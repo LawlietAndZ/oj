@@ -1,0 +1,46 @@
+info:
+  contact: {}
+paths:
+  /problem-detail:
+    get:
+      parameters:
+      - description: problem identity
+        in: query
+        name: identity
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 问题详情
+      tags:
+      - 公共方法
+  /problem-list:
+    get:
+      parameters:
+      - description: 请输入当前页，默认第一页
+        in: query
+        name: page
+        type: integer
+      - description: size
+        in: query
+        name: size
+        type: integer
+      - description: 模糊搜索keyword
+        in: query
+        name: keyword
+        type: string
+      - description: 分类的唯一标识
+        in: query
+        name: category_identity
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","list":"","count":""}'
+          schema:
+            type: string
+      summary: 问题列表
+      tags:
+      - 公共方法
+swagger: "2.0"
