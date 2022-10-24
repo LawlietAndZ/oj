@@ -13,7 +13,6 @@ type ProblemBasic struct {
 	ProblemCategories []*ProblemCategory `gorm:"foreignKey:problem_id;references:id" json:"problem_categories"` // 关联问题分类表
 	Content           string             `gorm:"column:content;type:text;" json:"content"`
 	Title             string             `gorm:"column:title;type:varchar(255);" json:"title"`
-	CategoryId        uint               `gorm:"column:category_id;type:int(11);" json:"category_id"`
 	MaxRuntime        int                `gorm:"column:max_runtime;type:int(11);" json:"max_runtime"` // 最大运行时长
 	MaxMem            int                `gorm:"column:max_mem;type:int(11);" json:"max_mem"`         // 最大运行内存
 }
