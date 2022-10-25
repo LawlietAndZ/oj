@@ -1,13 +1,16 @@
 package helper
 
 import (
-	"backen-oj/define"
 	"crypto/md5"
 	"crypto/tls"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/jordan-wright/email"
+	uuid "github.com/satori/go.uuid"
+	"math/rand"
 	"net/smtp"
+	"strconv"
+	"time"
 )
 
 
@@ -68,6 +71,20 @@ func SendCode(toUserEmail, code string) error {
 	e.Subject = "验证码已发送，请查收"
 	e.HTML = []byte("您的验证码：<b>" + code + "</b>")
 	return e.SendWithTLS("smtp.qq.com:465",
-		smtp.PlainAuth("", "1131927131@qq.com", define.MailPassword, "smtp.qq.com"),
+		smtp.PlainAuth("", "1131927131@qq.com", "svuirsiprgyhieaa", "smtp.qq.com"),
 		&tls.Config{InsecureSkipVerify: true, ServerName: "smtp.qq.com"})
+}
+
+func GetUUID() string{
+	return uuid.NewV4().String()
+}
+
+// 生成验证码
+func GetRand() string {
+	rand.Seed(time.Now().UnixNano())
+	s := ""
+	for i := 0; i < 6; i++ {
+		s += strconv.Itoa(rand.Intn(10))
+	}
+	return s
 }
