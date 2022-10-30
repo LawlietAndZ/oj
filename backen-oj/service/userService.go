@@ -79,7 +79,7 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	token, err := helper.GenerateToken(data.Identity, data.Name, 1)
+	token, err := helper.GenerateToken(data.Identity, data.Name, data.IsAdmin)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code": -1,
@@ -207,7 +207,7 @@ func Register(c *gin.Context) {
 
 	//到这里说明创建用户成功
 	//生成token
-	token,err:=helper.GenerateToken(userIdentity,name,1)
+	token,err:=helper.GenerateToken(userIdentity,name,data.IsAdmin)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code": -1,
